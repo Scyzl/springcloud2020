@@ -7,14 +7,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Author Scy
@@ -28,8 +24,6 @@ public class PaymentController {
 
     @Resource
     private PaymentService paymentService;
-    @Resource
-    private DiscoveryClient discoveryClient;
 
     @Value("${server.port}")
     private String serverPort;
@@ -59,22 +53,5 @@ public class PaymentController {
         } else {
             return new CommonResult(444, "没有查询记录，查询id：" + id + "，serverPort: " + serverPort, null);
         }
-    }
-
-    @ApiOperation("查看服务清单列表")
-    @GetMapping("/payment/discovery")
-    public Object discovery() {
-        // 获取服务清单列表
-        List<String> services = discoveryClient.getServices();      // get all known service IDs
-        for (String service : services) {
-            log.info("======service: " + service);
-            // 获得服务的信息
-            List<ServiceInstance> instances = discoveryClient.getInstances(service);
-            for (ServiceInstance instance : instances) {
-                log.info("======" + instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
-            }
-        }
-
-        return this.discoveryClient;
     }
 }

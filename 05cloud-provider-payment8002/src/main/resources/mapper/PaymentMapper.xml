@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.scy.dao.PaymentDao">
+
+    <resultMap id="BaseResultMap" type="com.scy.entities.Payment">
+        <!--column为数据库表中列名，property为实体类的属性名，二者做一个映射-->
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="serial" property="serial" jdbcType="VARCHAR"></id>
+    </resultMap>
+    <!--select：parameterType为传递的参数类型，resultMap为结果集类型-->
+    <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
+        select * from payment where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="Payment" keyProperty="id" useGeneratedKeys="true">
+        insert into payment(serial)
+        values (#{serial})
+    </insert>
+</mapper>
