@@ -12,6 +12,9 @@
     <modules>
         <module>01cloud-provider-payment8001</module>
         <module>02cloud-consumer-order80</module>
+        <module>03cloud-api-commons</module>
+        <module>04cloud-eureka-server7001</module>
+        <module>04cloud-eureka-server7003</module>
     </modules>
     <packaging>pom</packaging>    <!--父工程-->
 
@@ -119,6 +122,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.2.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
