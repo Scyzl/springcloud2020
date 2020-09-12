@@ -12,3 +12,15 @@ eureka:
 spring:
   profiles:
     active: dev
+
+# 设置feign客户端超时时间（openfeign默认支持feign）
+ribbon:
+  # 建立连接所用的时间，适用于网络状况正常的情况下连那个段连接所用的时间
+  ConnectTimeout: 5000
+  # 建立连接后从服务器读取到可用资源的时间
+  ReadTimeout: 5000
+
+logging:
+  level:
+    # feign 日志以什么级别监控哪个接口
+    com.scy.service.PaymentFeignService: debug
