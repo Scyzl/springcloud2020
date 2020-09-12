@@ -16,6 +16,8 @@
         <module>04cloud-eureka-server7001</module>
         <module>04cloud-eureka-server7003</module>
         <module>05cloud-provider-payment8002</module>
+        <module>06cloud-provider-consul-payment8006</module>
+        <module>06cloud-consumer-consul-order80</module>
     </modules>
     <packaging>pom</packaging>    <!--父工程-->
 
